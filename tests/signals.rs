@@ -4,7 +4,7 @@ use std::process::{Child, Command, Stdio};
 use std::thread::sleep;
 use std::time::Duration;
 
-use mio_signals::{send_signal, Signal, SignalSet, Signals};
+use mio_signals::{Signal, SignalSet, Signals, send_signal};
 
 #[test]
 fn signal_bit_or() {
@@ -187,9 +187,15 @@ fn example() {
     // perfectly fine, but does change the output.
     // In the end we do get all signals, which is what we want.
     #[cfg(any(target_os = "linux", target_os = "android"))]
-    let want = format!("Call `kill -s TERM {}` to stop the process\nGot interrupt signal\nGot quit signal\nGot user signal 1\nGot user signal 2\nGot terminate signal\n", pid);
+    let want = format!(
+        "Call `kill -s TERM {}` to stop the process\nGot interrupt signal\nGot quit signal\nGot user signal 1\nGot user signal 2\nGot terminate signal\n",
+        pid
+    );
     #[cfg(not(any(target_os = "linux", target_os = "android")))]
-    let want = format!("Call `kill -s TERM {}` to stop the process\nGot user signal 1\nGot user signal 2\nGot interrupt signal\nGot quit signal\nGot terminate signal\n", pid);
+    let want = format!(
+        "Call `kill -s TERM {}` to stop the process\nGot user signal 1\nGot user signal 2\nGot interrupt signal\nGot quit signal\nGot terminate signal\n",
+        pid
+    );
     assert_eq!(output, want);
 }
 

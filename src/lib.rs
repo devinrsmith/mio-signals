@@ -42,7 +42,7 @@ use std::num::NonZeroU8;
 use std::ops::BitOr;
 use std::{fmt, io};
 
-use mio::{event, Interest, Registry, Token};
+use mio::{Interest, Registry, Token, event};
 
 mod sys;
 

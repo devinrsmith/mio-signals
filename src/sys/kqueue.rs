@@ -4,7 +4,7 @@ use std::{io, ptr};
 
 use log::error;
 use mio::unix::SourceFd;
-use mio::{event, Interest, Registry, Token};
+use mio::{Interest, Registry, Token, event};
 
 use crate::{Signal, SignalSet};
 

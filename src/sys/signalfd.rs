@@ -1,10 +1,10 @@
-use std::mem::{size_of, MaybeUninit};
+use std::mem::{MaybeUninit, size_of};
 use std::os::unix::io::RawFd;
 use std::{fmt, io, ptr};
 
 use log::error;
 use mio::unix::SourceFd;
-use mio::{event, Interest, Registry, Token};
+use mio::{Interest, Registry, Token, event};
 
 use crate::{Signal, SignalSet};
 
